@@ -14,7 +14,7 @@ namespace xaxaxa {
 		// frequency sweep parameters; do NOT change while background thread is running
 		double startFreqHz=200e6;	// start frequency in Hz
 		double stepFreqHz=25e6;		// step frequency in Hz
-		int nPoints=50;				// how many frequency points
+		int nPoints=51;				// how many frequency points
 		int nValues=30;	 			// how many values to average over
 		int nWait=20;				// how many values to skip after changing frequency
 		bool disableReference = false;	// if true, do not divide by reference value
