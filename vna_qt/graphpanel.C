@@ -27,7 +27,7 @@ GraphPanel::GraphPanel(QWidget *parent) :
 
 
     axisX = new QValueAxis;
-    axisX->setTickCount(10);
+    axisX->setTickCount(11);
     axisX->setLabelsAngle(-90);
     chart->addAxis(axisX, Qt::AlignBottom);
 
