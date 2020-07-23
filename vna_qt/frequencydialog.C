@@ -65,7 +65,7 @@ bool FrequencyDialog::toVNA(VNADevice &dev) {
 void FrequencyDialog::updateLabels() {
     double stepSize = ( ui->t_stop->value() - ui->t_start->value()) / (ui->t_points->value() - 1);
     if(!std::isnan(stepSize) && stepSize>0)
-        ui->l_end->setText(qs(ssprintf(32, "%.6f", stepSize)));
+        ui->l_end->setText(qs(ssprintf(32, "%.3f", stepSize)));
 }
 
 void FrequencyDialog::updateCenterSpan() {
