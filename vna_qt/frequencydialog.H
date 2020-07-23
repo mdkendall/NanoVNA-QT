@@ -27,11 +27,15 @@ public:
     bool toVNA(VNADevice& dev);
 
     void updateLabels();
+    void updateCenterSpan();
+    void updateStartStop();
 
 private slots:
     void on_slider_power_valueChanged(int value);
     void on_t_start_valueChanged(const QString &arg1);
     void on_t_stop_valueChanged(const QString &arg1);
+    void on_t_center_valueChanged(const QString &arg1);
+    void on_t_span_valueChanged(const QString &arg1);
     void on_t_points_valueChanged(const QString &arg1);
 
     void on_c_advanced_stateChanged(int);

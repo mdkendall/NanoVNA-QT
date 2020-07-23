@@ -64,9 +64,30 @@ bool FrequencyDialog::toVNA(VNADevice &dev) {
 
 void FrequencyDialog::updateLabels() {
     double stepSize = ( ui->t_stop->value() - ui->t_start->value()) / (ui->t_points->value() - 1);
-
     if(!std::isnan(stepSize) && stepSize>0)
         ui->l_end->setText(qs(ssprintf(32, "%.6f", stepSize)));
+}
+
+void FrequencyDialog::updateCenterSpan() {
+    double center = (ui->t_stop->value() + ui->t_start->value()) / 2.;
+    double span = (ui->t_stop->value() - ui->t_start->value());
+    ui->t_center->blockSignals(true);
+    ui->t_span->blockSignals(true);
+    ui->t_center->setValue(center);
+    ui->t_span->setValue(span);
+    ui->t_center->blockSignals(false);
+    ui->t_span->blockSignals(false);
+}
+
+void FrequencyDialog::updateStartStop() {
+    double start = ui->t_center->value() - (ui->t_span->value() / 2.);
+    double stop = ui->t_center->value() + (ui->t_span->value() / 2.);
+    ui->t_start->blockSignals(true);
+    ui->t_stop->blockSignals(true);
+    ui->t_start->setValue(start);
+    ui->t_stop->setValue(stop);
+    ui->t_start->blockSignals(false);
+    ui->t_stop->blockSignals(false);
 }
 
 void FrequencyDialog::on_slider_power_valueChanged(int value) {
@@ -74,10 +95,22 @@ void FrequencyDialog::on_slider_power_valueChanged(int value) {
 }
 
 void FrequencyDialog::on_t_start_valueChanged(const QString &) {
+    updateCenterSpan();
     updateLabels();
 }
 
 void FrequencyDialog::on_t_stop_valueChanged(const QString &) {
+    updateCenterSpan();
+    updateLabels();
+}
+
+void FrequencyDialog::on_t_center_valueChanged(const QString &) {
+    updateStartStop();
+    updateLabels();
+}
+
+void FrequencyDialog::on_t_span_valueChanged(const QString &) {
+    updateStartStop();
     updateLabels();
 }
 
